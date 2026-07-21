@@ -3,59 +3,196 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kova — Workout tracking, built for lifters</title>
-    <meta name="description" content="Kova is a workout-tracking app for lifters. Log sets, track personal records, and share progress with friends." />
+    <title>KovaFit — Workout tracking, built for lifters</title>
+    <meta
+      name="description"
+      content="KovaFit is a strength-training tracker for lifters. Log sets in seconds, track PRs automatically, keep streaks alive, and share the wins. Now on the App Store."
+    />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+    <meta property="og:title" content="KovaFit — Workout tracking, built for lifters" />
+    <meta
+      property="og:description"
+      content="Log sets in seconds, track PRs automatically, and share the wins. Now on the App Store."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kovafit.ca/" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="wrap">
       <nav class="nav">
         <a class="brand" href="/">
-          <img src="/assets/kova-logo.png" alt="Kova" height="26" />
+          <img src="/assets/kova-logo.png" alt="KovaFit" height="24" />
         </a>
         <div class="nav-links">
-          <a href="/" aria-current="page">Home</a>
+          <a href="#features">Features</a>
           <a href="/support/">Support</a>
           <a href="/privacy/">Privacy</a>
+          <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
         </div>
       </nav>
 
       <section class="hero">
-        <div class="hero-mark">
-          <img src="/assets/kova-logo.png" alt="Kova" height="40" />
-        </div>
-        <h1>Workout tracking, built for lifters.</h1>
+        <span class="eyebrow">Strength training, tracked</span>
+        <h1>Log the set.<br />Watch the PR climb.</h1>
         <p class="tagline">
-          Log sets in seconds, watch your personal records climb, and share the
-          wins with the people who actually care.
+          KovaFit is a workout tracker built for lifters — log sets in seconds,
+          track personal records automatically, keep your streak alive, and
+          share the wins with the people who actually care.
         </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="mailto:hello@kovafit.ca?subject=Kova%20beta%20access">Request beta access</a>
-          <a class="btn btn-secondary" href="/support/">Get support</a>
+
+        <div class="store-row">
+          <!-- Real App Store listing -->
+          <a
+            class="store-badge"
+            href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828"
+            aria-label="Download KovaFit on the App Store"
+          >
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M16.365 1.43c0 1.14-.417 2.2-1.11 2.99-.83.95-2.19 1.68-3.29 1.6-.13-1.12.43-2.29 1.09-3.02.75-.83 2.06-1.46 3.09-1.5.02.31.02.62.02.93M20.9 17.19c-.5 1.16-.74 1.67-1.39 2.7-.9 1.44-2.17 3.24-3.75 3.25-1.4.01-1.76-.9-3.66-.89-1.9.01-2.29.91-3.69.89-1.58-.02-2.78-1.63-3.68-3.07C1.9 15.5 1.63 10.4 3.32 7.69c1.05-1.7 2.71-2.7 4.27-2.7 1.59 0 2.59.9 3.9.9 1.27 0 2.05-.9 3.89-.9 1.39 0 2.86.76 3.91 2.07-3.44 1.88-2.88 6.79.61 8.13"
+              />
+            </svg>
+            <span class="store-badge-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </span>
+          </a>
+
+          <!-- Google Play — coming soon (disabled) -->
+          <span class="store-badge store-badge--soon" aria-label="Coming soon to Google Play">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M3.6 1.8 13.4 12 3.6 22.2c-.36-.2-.6-.58-.6-1.05V2.85c0-.47.24-.85.6-1.05Z" />
+              <path fill="currentColor" d="m16.2 9.2 3.02 1.71c.86.49.86 1.7 0 2.18L16.2 14.8 13.9 12l2.3-2.8Z" opacity=".85" />
+              <path fill="currentColor" d="M4.6 1.3 14.9 10.5 16.2 9.2 5.6 1.05a1.2 1.2 0 0 0-1 .25Z" opacity=".7" />
+              <path fill="currentColor" d="M4.6 22.7 14.9 13.5 16.2 14.8 5.6 22.95a1.2 1.2 0 0 1-1-.25Z" opacity=".7" />
+            </svg>
+            <span class="store-badge-text">
+              <small>Coming soon to</small>
+              <strong>Google Play</strong>
+            </span>
+          </span>
+        </div>
+
+        <p class="store-note">
+          <span class="dot"></span> Live on the App Store now · Android coming soon
+        </p>
+      </section>
+
+      <!-- Three-up overview, mirrors the app's PillStat row -->
+      <section class="pillstats">
+        <div class="pillstat">
+          <span class="pillstat-value">2‑tap</span>
+          <span class="pillstat-label">Set logging</span>
+        </div>
+        <div class="pillstat">
+          <span class="pillstat-value">Auto</span>
+          <span class="pillstat-label">PR detection</span>
+        </div>
+        <div class="pillstat">
+          <span class="pillstat-value">Zero</span>
+          <span class="pillstat-label">Ads, ever</span>
         </div>
       </section>
 
-      <section class="features">
+      <!-- Device showcase — real app screenshots in iPhone frames -->
+      <section class="showcase" aria-label="KovaFit app screenshots">
+        <div class="showcase-inner">
+          <figure class="phone">
+            <span class="phone-island"></span>
+            <span class="phone-screen">
+              <img src="/assets/screens/profile.png" alt="KovaFit profile — streaks, consistency heatmap and lifetime volume" loading="lazy" width="1179" height="2556" />
+            </span>
+          </figure>
+          <figure class="phone">
+            <span class="phone-island"></span>
+            <span class="phone-screen">
+              <img src="/assets/screens/stats.png" alt="KovaFit exercise stats — predicted max, performance trend and PR progression" loading="lazy" width="1179" height="2556" />
+            </span>
+          </figure>
+          <figure class="phone">
+            <span class="phone-island"></span>
+            <span class="phone-screen">
+              <img src="/assets/screens/feed.png" alt="KovaFit social feed — friends' workouts with volume, sets and PRs" loading="lazy" width="1179" height="2556" />
+            </span>
+          </figure>
+          <figure class="phone">
+            <span class="phone-island"></span>
+            <span class="phone-screen">
+              <img src="/assets/screens/workout.png" alt="KovaFit workout logging — sets, reps and inline muscle map" loading="lazy" width="1179" height="2556" />
+            </span>
+          </figure>
+        </div>
+      </section>
+
+      <section id="features" class="features">
         <div class="feature">
           <h3>Fast set logging</h3>
-          <p>A logging flow tuned for the gym floor — weight, reps, done. No menus, no friction.</p>
+          <p>Weight, reps, done. A logging flow tuned for the gym floor — sets save as you go, with an integrated rest timer.</p>
         </div>
         <div class="feature">
-          <h3>Personal records</h3>
-          <p>Kova tracks PRs automatically across every lift and tells you the moment you break one.</p>
+          <h3>Automatic PRs</h3>
+          <p>KovaFit detects personal records across every lift — estimated 1RM and best-set volume — and tells you the moment you break one.</p>
+        </div>
+        <div class="feature">
+          <h3>Deep stats</h3>
+          <p>Lifetime totals, a weekly-volume trend, records, best lifts, top exercises, and a muscle-split breakdown.</p>
         </div>
         <div class="feature">
           <h3>Streaks &amp; history</h3>
-          <p>Your training history, body-weight log, and streaks — all in one place, all yours.</p>
+          <p>Browse every finished workout down to the exact set. Rest days protect your streak — consistency, rewarded.</p>
         </div>
         <div class="feature">
           <h3>Social, without the noise</h3>
-          <p>Follow friends, cheer their PRs, and share workout cards. No ads, no algorithm.</p>
+          <p>Follow friends, cheer their PRs, and comment. No ads, no algorithm — just the people who care.</p>
+        </div>
+        <div class="feature">
+          <h3>Share your workout</h3>
+          <p>Turn any session into a shareable card — a stat overlay for your story, or your own photo with the numbers baked in.</p>
+        </div>
+      </section>
+
+      <!-- Bottom download call-to-action -->
+      <section class="download">
+        <img class="download-icon" src="/assets/app-icon.png" alt="KovaFit app icon" width="76" height="76" />
+        <h2>Start tracking with KovaFit</h2>
+        <p>Free to download on iPhone. Android is on the way.</p>
+        <div class="store-row store-row--center">
+          <a
+            class="store-badge"
+            href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828"
+            aria-label="Download KovaFit on the App Store"
+          >
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M16.365 1.43c0 1.14-.417 2.2-1.11 2.99-.83.95-2.19 1.68-3.29 1.6-.13-1.12.43-2.29 1.09-3.02.75-.83 2.06-1.46 3.09-1.5.02.31.02.62.02.93M20.9 17.19c-.5 1.16-.74 1.67-1.39 2.7-.9 1.44-2.17 3.24-3.75 3.25-1.4.01-1.76-.9-3.66-.89-1.9.01-2.29.91-3.69.89-1.58-.02-2.78-1.63-3.68-3.07C1.9 15.5 1.63 10.4 3.32 7.69c1.05-1.7 2.71-2.7 4.27-2.7 1.59 0 2.59.9 3.9.9 1.27 0 2.05-.9 3.89-.9 1.39 0 2.86.76 3.91 2.07-3.44 1.88-2.88 6.79.61 8.13"
+              />
+            </svg>
+            <span class="store-badge-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </span>
+          </a>
+          <span class="store-badge store-badge--soon" aria-label="Coming soon to Google Play">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M3.6 1.8 13.4 12 3.6 22.2c-.36-.2-.6-.58-.6-1.05V2.85c0-.47.24-.85.6-1.05Z" />
+              <path fill="currentColor" d="m16.2 9.2 3.02 1.71c.86.49.86 1.7 0 2.18L16.2 14.8 13.9 12l2.3-2.8Z" opacity=".85" />
+              <path fill="currentColor" d="M4.6 1.3 14.9 10.5 16.2 9.2 5.6 1.05a1.2 1.2 0 0 0-1 .25Z" opacity=".7" />
+              <path fill="currentColor" d="M4.6 22.7 14.9 13.5 16.2 14.8 5.6 22.95a1.2 1.2 0 0 1-1-.25Z" opacity=".7" />
+            </svg>
+            <span class="store-badge-text">
+              <small>Coming soon to</small>
+              <strong>Google Play</strong>
+            </span>
+          </span>
         </div>
       </section>
 
       <footer class="site">
-        <div>© 2026 Kova</div>
+        <div>© 2026 KovaFit</div>
         <div class="links">
           <a href="/support/">Support</a>
           <a href="/privacy/">Privacy</a>
