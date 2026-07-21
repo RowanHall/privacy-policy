@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>One-Rep Max Calculator (1RM) — Free &amp; Accurate | KovaFit</title>
+    <meta name="description" content="Free one-rep max calculator. Estimate your 1RM from any set using the Epley, Brzycki and Lombardi formulas, plus a full rep-max chart and training percentages in lb or kg." />
+    <link rel="canonical" href="https://kovafit.ca/tools/one-rep-max-calculator/" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+    <meta property="og:site_name" content="KovaFit" />
+    <meta property="og:title" content="One-Rep Max Calculator (1RM) — Free &amp; Accurate" />
+    <meta property="og:description" content="Estimate your 1RM from any set, with a full rep-max chart and training percentages in lb or kg." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kovafit.ca/tools/one-rep-max-calculator/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovafit.ca/" },
+              { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://kovafit.ca/tools/" },
+              { "@type": "ListItem", "position": 3, "name": "One-Rep Max Calculator", "item": "https://kovafit.ca/tools/one-rep-max-calculator/" }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do you calculate your one-rep max?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Enter the weight you lifted and the number of reps you completed. A 1RM formula then estimates the maximum weight you could lift for a single rep. This calculator averages three proven formulas — Epley, Brzycki and Lombardi — for a reliable estimate. Estimates are most accurate for sets of 10 reps or fewer."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which one-rep max formula is most accurate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No single formula is best for everyone. Epley and Brzycki are the most widely used and agree closely in the 1–10 rep range. Averaging several formulas, as this calculator does, smooths out their individual biases and gives a more robust estimate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I use one-rep max percentages for training?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Once you know your estimated 1RM, most strength programs prescribe work as a percentage of it — for example 5 reps at 80% or 3 reps at 90%. The rep-max chart on this page converts your 1RM into target weights for 1 through 12 reps."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/kova-logo.png" alt="KovaFit" height="26" />
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
+        </div>
+      </nav>
+
+      <header class="doc-header">
+        <h1>One-Rep Max Calculator</h1>
+      </header>
+      <p class="lead">
+        Estimate your one-rep max (1RM) from any set. Enter the weight and reps
+        you lifted — we average the Epley, Brzycki and Lombardi formulas and
+        build your full rep-max chart below.
+      </p>
+
+      <div class="tool">
+        <div class="tool-form">
+          <div class="field">
+            <label for="weight">Weight lifted</label>
+            <input id="weight" type="number" inputmode="decimal" min="0" step="0.5" value="225" />
+          </div>
+          <div class="field">
+            <label for="reps">Reps completed</label>
+            <input id="reps" type="number" inputmode="numeric" min="1" max="20" step="1" value="5" />
+          </div>
+          <div class="field">
+            <label>Units</label>
+            <div class="seg" role="group" aria-label="Units">
+              <button type="button" id="unit-lb" aria-pressed="true">lb</button>
+              <button type="button" id="unit-kg" aria-pressed="false">kg</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="result-label">Estimated one-rep max</span>
+          <span class="result-value" id="rm-value">—</span>
+          <span class="result-sub" id="rm-sub"></span>
+        </div>
+      </div>
+
+      <h2>Your rep-max chart</h2>
+      <p>
+        Target weights for each rep count, based on your estimated 1RM. Use these
+        as training percentages — most strength programs are written this way.
+      </p>
+      <table class="data-table" id="rm-table" aria-label="Rep-max chart">
+        <thead>
+          <tr>
+            <th>Reps</th>
+            <th>% of 1RM</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="tool-cta">
+        <p><strong>Stop doing this by hand.</strong> KovaFit updates your estimated 1RM every time you log a set and flags new PRs automatically — free on iPhone.</p>
+        <a class="btn" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get KovaFit</a>
+      </div>
+
+      <h2>How the one-rep max is calculated</h2>
+      <p>
+        A one-rep max formula predicts the heaviest weight you could lift for a
+        single rep from a lighter set taken closer to failure. This tool averages
+        three well-established formulas:
+      </p>
+      <ul>
+        <li><strong>Epley:</strong> weight × (1 + reps ÷ 30)</li>
+        <li><strong>Brzycki:</strong> weight × 36 ÷ (37 − reps)</li>
+        <li><strong>Lombardi:</strong> weight × reps<sup>0.10</sup></li>
+      </ul>
+      <div class="callout">
+        <p>
+          Estimates are most accurate for sets of about <strong>10 reps or
+          fewer</strong> taken close to failure. The further you get from a true
+          max — very high reps, or lots of reps left in the tank — the rougher
+          the estimate. Treat the number as a training guide, not a guarantee.
+        </p>
+      </div>
+
+      <p>
+        Want the full breakdown of each formula and how to program around your
+        1RM? Read
+        <a href="/blog/how-to-calculate-one-rep-max/">How to calculate your one-rep max</a>.
+      </p>
+
+      <footer class="site">
+        <div>© 2026 KovaFit</div>
+        <div class="links">
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var weightEl = document.getElementById("weight");
+        var repsEl = document.getElementById("reps");
+        var rmValue = document.getElementById("rm-value");
+        var rmSub = document.getElementById("rm-sub");
+        var tbody = document.querySelector("#rm-table tbody");
+        var lbBtn = document.getElementById("unit-lb");
+        var kgBtn = document.getElementById("unit-kg");
+        var unit = "lb";
+
+        function round(n, step) {
+          return Math.round(n / step) * step;
+        }
+        function fmt(n) {
+          // trim trailing .0
+          return (Math.round(n * 10) / 10).toString().replace(/\.0$/, "");
+        }
+
+        // Percentage of 1RM you can lift for n reps (Epley inverse)
+        function pctForReps(n) {
+          if (n <= 1) return 1;
+          return 30 / (30 + n);
+        }
+
+        function estimate1RM(w, r) {
+          if (r <= 1) return w;
+          var epley = w * (1 + r / 30);
+          var brzycki = w * 36 / (37 - r);
+          var lombardi = w * Math.pow(r, 0.10);
+          return (epley + brzycki + lombardi) / 3;
+        }
+
+        function update() {
+          var w = parseFloat(weightEl.value);
+          var r = parseInt(repsEl.value, 10);
+
+          if (!(w > 0) || !(r >= 1)) {
+            rmValue.textContent = "—";
+            rmSub.textContent = "Enter a weight and rep count.";
+            tbody.innerHTML = "";
+            return;
+          }
+          if (r > 20) { r = 20; repsEl.value = 20; }
+
+          var oneRM = estimate1RM(w, r);
+          var display = round(oneRM, 0.5);
+          rmValue.textContent = fmt(display) + " " + unit;
+          rmSub.textContent =
+            "From " + fmt(w) + " " + unit + " × " + r + (r === 1 ? " rep" : " reps");
+
+          var rows = "";
+          for (var n = 1; n <= 12; n++) {
+            var pct = pctForReps(n);
+            var wt = round(oneRM * pct, 0.5);
+            var cls = n === r ? ' class="is-highlight"' : "";
+            rows +=
+              "<tr" + cls + "><td>" + n + "</td><td>" +
+              Math.round(pct * 100) + "%</td><td>" +
+              fmt(wt) + " " + unit + "</td></tr>";
+          }
+          tbody.innerHTML = rows;
+        }
+
+        function setUnit(u) {
+          if (u === unit) return;
+          var w = parseFloat(weightEl.value);
+          // convert the entered weight so the field stays sensible
+          if (w > 0) {
+            weightEl.value = u === "kg"
+              ? round(w * 0.453592, 0.5)
+              : round(w / 0.453592, 0.5);
+          }
+          unit = u;
+          lbBtn.setAttribute("aria-pressed", String(u === "lb"));
+          kgBtn.setAttribute("aria-pressed", String(u === "kg"));
+          update();
+        }
+
+        weightEl.addEventListener("input", update);
+        repsEl.addEventListener("input", update);
+        lbBtn.addEventListener("click", function () { setUnit("lb"); });
+        kgBtn.addEventListener("click", function () { setUnit("kg"); });
+        update();
+      })();
+    </script>
+  </body>
+</html>

@@ -3,20 +3,79 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>KovaFit — The workout tracker built for lifters</title>
+    <title>KovaFit — Workout Tracker &amp; Gym Log for Lifters | iOS App</title>
     <meta
       name="description"
-      content="KovaFit is a strength-training tracker for lifters. Log sets in seconds, track PRs automatically, keep streaks alive, and share the wins. Now on the App Store."
+      content="KovaFit is a strength-training workout tracker for lifters. Log sets in seconds, track personal records automatically, keep your streak alive, and share the wins. Free on the App Store."
     />
+    <link rel="canonical" href="https://kovafit.ca/" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="apple-itunes-app" content="app-id=6780379828" />
     <link rel="icon" href="/assets/favicon.png" />
     <link rel="apple-touch-icon" href="/assets/app-icon.png" />
-    <meta property="og:title" content="KovaFit — The workout tracker built for lifters" />
+    <link rel="preload" as="image" href="/assets/hero-phones.png" fetchpriority="high" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="KovaFit" />
+    <meta property="og:title" content="KovaFit — Workout Tracker &amp; Gym Log for Lifters" />
     <meta
       property="og:description"
-      content="Log sets in seconds, track PRs automatically, and share the wins. Now on the App Store."
+      content="Log sets in seconds, track PRs automatically, keep your streak alive, and share the wins. Free on the App Store."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kovafit.ca/" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:image" content="https://kovafit.ca/assets/hero-phones.png" />
+    <meta property="og:image:width" content="1193" />
+    <meta property="og:image:height" content="915" />
+    <meta property="og:image:alt" content="KovaFit shown on two iPhones — profile heatmap and social feed" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KovaFit — Workout Tracker &amp; Gym Log for Lifters" />
+    <meta
+      name="twitter:description"
+      content="Log sets in seconds, track PRs automatically, keep your streak alive, and share the wins. Free on the App Store."
+    />
+    <meta name="twitter:image" content="https://kovafit.ca/assets/hero-phones.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "MobileApplication",
+            "name": "KovaFit",
+            "operatingSystem": "iOS",
+            "applicationCategory": "HealthApplication",
+            "description": "A strength-training workout tracker for lifters. Log sets in seconds, track personal records automatically, keep your streak alive, and share the wins.",
+            "url": "https://kovafit.ca/",
+            "image": "https://kovafit.ca/assets/app-icon.png",
+            "installUrl": "https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "Organization",
+            "name": "KovaFit",
+            "url": "https://kovafit.ca/",
+            "logo": "https://kovafit.ca/assets/kova-logo.png",
+            "email": "hello@kovafit.ca"
+          },
+          {
+            "@type": "WebSite",
+            "name": "KovaFit",
+            "url": "https://kovafit.ca/"
+          }
+        ]
+      }
+    </script>
+
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body class="home">
@@ -28,8 +87,9 @@
         </a>
         <nav class="nav-links">
           <a href="#features">Features</a>
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
           <a href="/support/">Support</a>
-          <a href="/privacy/">Privacy</a>
           <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
         </nav>
       </div>
@@ -255,6 +315,8 @@
           <span>© 2026 KovaFit</span>
         </div>
         <div class="footer-links">
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
           <a href="/support/">Support</a>
           <a href="/privacy/">Privacy</a>
           <a href="/terms/">Terms</a>

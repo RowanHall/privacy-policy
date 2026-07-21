@@ -1,0 +1,34 @@
+# KovaFit
+
+> KovaFit is a strength-training workout tracker for lifters, available free on the iOS App Store (Android coming soon). It focuses on fast set logging, automatic personal-record (PR) detection, training streaks, progress stats, and a lightweight social feed with no ads and no algorithm.
+
+## Key features
+- Two-tap set logging (weight, reps) with smart weight suggestions and a built-in rest timer
+- Inline muscle map showing which muscles each exercise hits
+- Automatic personal-record detection and estimated one-rep-max (1RM) per exercise
+- Progress stats: performance trends, lifetime volume, top lifts, and muscle-split breakdown
+- Training streaks and a full-year consistency heatmap
+- Social feed to follow friends, cheer PRs, and comment — no ads, no algorithm
+- Shareable workout cards (stat overlay or your own photo)
+- Sign in with Apple, Google, or GitHub; secure cloud sync
+- Export your full training history and delete your account instantly
+
+## Platform & pricing
+- iOS: free on the App Store — https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828
+- Android: coming soon
+
+## Pages
+- Home: https://kovafit.ca/
+- Support & FAQ: https://kovafit.ca/support/
+- Privacy Policy: https://kovafit.ca/privacy/
+- Terms of Use: https://kovafit.ca/terms/
+
+## Free tools & guides
+- Lifting tools hub: https://kovafit.ca/tools/
+- One-Rep Max (1RM) Calculator — estimate your 1RM from any set, with a rep-max chart: https://kovafit.ca/tools/one-rep-max-calculator/
+- Barbell Plate Calculator — which plates to load per side: https://kovafit.ca/tools/plate-calculator/
+- Blog: https://kovafit.ca/blog/
+- Guide: How to calculate your one-rep max: https://kovafit.ca/blog/how-to-calculate-one-rep-max/
+
+## Contact
+- Email: hello@kovafit.ca

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Barbell Plate Calculator — What Plates to Load | KovaFit</title>
+    <meta name="description" content="Free barbell plate calculator. Enter your target weight and bar weight to see exactly which plates to load on each side, in lb or kg." />
+    <link rel="canonical" href="https://kovafit.ca/tools/plate-calculator/" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+    <meta property="og:site_name" content="KovaFit" />
+    <meta property="og:title" content="Barbell Plate Calculator — What Plates to Load" />
+    <meta property="og:description" content="Enter a target weight and see exactly which plates to load on each side of the bar." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kovafit.ca/tools/plate-calculator/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovafit.ca/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://kovafit.ca/tools/" },
+          { "@type": "ListItem", "position": 3, "name": "Barbell Plate Calculator", "item": "https://kovafit.ca/tools/plate-calculator/" }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/kova-logo.png" alt="KovaFit" height="26" />
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
+        </div>
+      </nav>
+
+      <header class="doc-header">
+        <h1>Barbell Plate Calculator</h1>
+      </header>
+      <p class="lead">
+        Enter the total weight you want on the bar and we'll show you exactly
+        which plates to load on <strong>each side</strong>. Standard gym plates,
+        in pounds or kilograms.
+      </p>
+
+      <div class="tool">
+        <div class="tool-form">
+          <div class="field">
+            <label for="target">Target total weight</label>
+            <input id="target" type="number" inputmode="decimal" min="0" step="0.5" value="225" />
+          </div>
+          <div class="field">
+            <label for="bar">Bar weight</label>
+            <input id="bar" type="number" inputmode="decimal" min="0" step="0.5" value="45" />
+          </div>
+          <div class="field">
+            <label>Units</label>
+            <div class="seg" role="group" aria-label="Units">
+              <button type="button" id="unit-lb" aria-pressed="true">lb</button>
+              <button type="button" id="unit-kg" aria-pressed="false">kg</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="result-label">Per side</span>
+          <span class="result-value" id="per-side">—</span>
+          <span class="result-sub" id="load-sub"></span>
+        </div>
+      </div>
+
+      <table class="data-table" id="plate-table" aria-label="Plates per side">
+        <thead>
+          <tr>
+            <th>Plate</th>
+            <th>Per side</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="tool-cta">
+        <p><strong>Track what you actually lifted.</strong> KovaFit logs every set in two taps and charts your progress automatically — free on iPhone.</p>
+        <a class="btn" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get KovaFit</a>
+      </div>
+
+      <h2>How it works</h2>
+      <p>
+        The calculator subtracts the bar weight, splits the remainder across the
+        two sides, then loads the heaviest plates first. A standard Olympic
+        barbell is <strong>45&nbsp;lb (20&nbsp;kg)</strong>. If the target can't
+        be made exactly with common plates, the leftover is shown so you can
+        adjust.
+      </p>
+
+      <footer class="site">
+        <div>© 2026 KovaFit</div>
+        <div class="links">
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var targetEl = document.getElementById("target");
+        var barEl = document.getElementById("bar");
+        var perSide = document.getElementById("per-side");
+        var loadSub = document.getElementById("load-sub");
+        var tbody = document.querySelector("#plate-table tbody");
+        var lbBtn = document.getElementById("unit-lb");
+        var kgBtn = document.getElementById("unit-kg");
+        var unit = "lb";
+
+        var PLATES = {
+          lb: [45, 35, 25, 10, 5, 2.5],
+          kg: [25, 20, 15, 10, 5, 2.5, 1.25]
+        };
+
+        function fmt(n) {
+          return (Math.round(n * 100) / 100).toString();
+        }
+
+        function update() {
+          var target = parseFloat(targetEl.value);
+          var bar = parseFloat(barEl.value);
+          if (isNaN(bar) || bar < 0) bar = 0;
+
+          if (!(target > 0)) {
+            perSide.textContent = "—";
+            loadSub.textContent = "Enter a target weight.";
+            tbody.innerHTML = "";
+            return;
+          }
+          if (target < bar) {
+            perSide.textContent = "0 " + unit;
+            loadSub.textContent = "Target is lighter than the empty bar.";
+            tbody.innerHTML = "";
+            return;
+          }
+
+          var each = (target - bar) / 2;
+          perSide.textContent = fmt(each) + " " + unit;
+
+          var remaining = each;
+          var rows = "";
+          var plates = PLATES[unit];
+          var used = false;
+          for (var i = 0; i < plates.length; i++) {
+            var p = plates[i];
+            var count = Math.floor((remaining + 1e-9) / p);
+            if (count > 0) {
+              used = true;
+              remaining = remaining - count * p;
+              rows +=
+                "<tr><td>" + fmt(p) + " " + unit +
+                "</td><td>" + count + " ×</td></tr>";
+            }
+          }
+          tbody.innerHTML = used
+            ? rows
+            : '<tr><td colspan="2">Just the bar.</td></tr>';
+
+          if (remaining > 0.01) {
+            loadSub.textContent =
+              "Closest exact load leaves " + fmt(remaining) +
+              " " + unit + " per side unaccounted for.";
+          } else {
+            loadSub.textContent = "Loads exactly. Bar: " + fmt(bar) + " " + unit + ".";
+          }
+        }
+
+        function setUnit(u) {
+          if (u === unit) return;
+          unit = u;
+          // sensible defaults per unit
+          barEl.value = u === "kg" ? 20 : 45;
+          targetEl.value = u === "kg" ? 100 : 225;
+          lbBtn.setAttribute("aria-pressed", String(u === "lb"));
+          kgBtn.setAttribute("aria-pressed", String(u === "kg"));
+          update();
+        }
+
+        targetEl.addEventListener("input", update);
+        barEl.addEventListener("input", update);
+        lbBtn.addEventListener("click", function () { setUnit("lb"); });
+        kgBtn.addEventListener("click", function () { setUnit("kg"); });
+        update();
+      })();
+    </script>
+  </body>
+</html>
