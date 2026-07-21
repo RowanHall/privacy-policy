@@ -21,12 +21,37 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kovafit.ca/tools/rpe-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kovafit.ca/tools/strength-standards-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kovafit.ca/tools/warmup-set-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://kovafit.ca/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kovafit.ca/blog/how-to-calculate-one-rep-max/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kovafit.ca/blog/best-free-workout-tracker-apps/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kovafit.ca/blog/workout-tracker-vs-spreadsheet/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

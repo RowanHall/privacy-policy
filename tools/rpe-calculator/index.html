@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RPE Calculator (RPE &amp; RIR to 1RM) — Free | KovaFit</title>
+    <meta name="description" content="Free RPE calculator for lifting. Convert weight, reps and RPE into an estimated one-rep max, see reps-in-reserve (RIR), and get target weights for any RPE." />
+    <link rel="canonical" href="https://kovafit.ca/tools/rpe-calculator/" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+    <meta property="og:site_name" content="KovaFit" />
+    <meta property="og:title" content="RPE Calculator (RPE &amp; RIR to 1RM)" />
+    <meta property="og:description" content="Convert weight, reps and RPE into an estimated 1RM, with reps-in-reserve and target weights for any RPE." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kovafit.ca/tools/rpe-calculator/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovafit.ca/" },
+              { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://kovafit.ca/tools/" },
+              { "@type": "ListItem", "position": 3, "name": "RPE Calculator", "item": "https://kovafit.ca/tools/rpe-calculator/" }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is RPE in weightlifting?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "RPE stands for Rate of Perceived Exertion. On the lifting scale it runs from about 6 to 10, where RPE 10 means an all-out set with nothing left, and RPE 8 means you could have done two more reps. It's a way to autoregulate training by effort rather than fixed percentages."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do RPE and RIR relate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "RIR means Reps In Reserve — how many reps you had left. RIR = 10 − RPE. So RPE 10 is 0 RIR, RPE 9 is 1 RIR, RPE 8 is 2 RIR, and so on."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does an RPE calculator estimate your one-rep max?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A set of a given number of reps at a given RPE corresponds to a known percentage of your one-rep max. The calculator looks up that percentage from an RPE chart and divides your lifted weight by it to estimate your 1RM."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/kova-logo.png" alt="KovaFit" height="26" />
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
+        </div>
+      </nav>
+
+      <header class="doc-header">
+        <h1>RPE Calculator</h1>
+      </header>
+      <p class="lead">
+        Turn a set logged by feel into a number. Enter the weight, reps and RPE
+        (rate of perceived exertion) — we estimate your one-rep max and show what
+        to load for any target RPE.
+      </p>
+
+      <div class="tool">
+        <div class="tool-form">
+          <div class="field">
+            <label for="weight">Weight lifted</label>
+            <input id="weight" type="number" inputmode="decimal" min="0" step="0.5" value="225" />
+          </div>
+          <div class="field">
+            <label for="reps">Reps completed</label>
+            <input id="reps" type="number" inputmode="numeric" min="1" max="12" step="1" value="5" />
+          </div>
+          <div class="field">
+            <label for="rpe">RPE</label>
+            <select id="rpe">
+              <option value="10">10 — 0 reps left</option>
+              <option value="9.5">9.5</option>
+              <option value="9">9 — 1 rep left</option>
+              <option value="8.5" selected>8.5</option>
+              <option value="8">8 — 2 reps left</option>
+              <option value="7.5">7.5</option>
+              <option value="7">7 — 3 reps left</option>
+              <option value="6.5">6.5</option>
+              <option value="6">6 — 4 reps left</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Units</label>
+            <div class="seg" role="group" aria-label="Units">
+              <button type="button" id="unit-lb" aria-pressed="true">lb</button>
+              <button type="button" id="unit-kg" aria-pressed="false">kg</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="result-label">Estimated one-rep max</span>
+          <span class="result-value" id="rm-value">—</span>
+          <span class="result-sub" id="rm-sub"></span>
+        </div>
+      </div>
+
+      <h2>Target weight by RPE</h2>
+      <p>
+        For your rep count, here's roughly what to load to hit each RPE — handy
+        for autoregulating on the day.
+      </p>
+      <table class="data-table" id="rpe-table" aria-label="Target weight by RPE">
+        <thead>
+          <tr><th>RPE</th><th>Reps in reserve</th><th>Weight</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="tool-cta">
+        <p><strong>Log by feel, track by numbers.</strong> KovaFit records every set and turns it into an estimated 1RM and PR history automatically — free on iPhone.</p>
+        <a class="btn" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get KovaFit</a>
+      </div>
+
+      <h2>RPE and RIR, explained</h2>
+      <p>
+        <strong>RPE</strong> (rate of perceived exertion) rates how hard a set
+        felt, from about 6 to 10. <strong>RIR</strong> (reps in reserve) is the
+        flip side — how many reps you had left. They're linked simply:
+      </p>
+      <p><code>RIR = 10 − RPE</code></p>
+      <div class="callout">
+        <p>
+          RPE is a judgement call and gets more accurate with experience.
+          Estimates here use a standard RPE-to-percentage chart and are most
+          reliable in the 1–8 rep range. Related:
+          <a href="/tools/one-rep-max-calculator/">one-rep max calculator</a>.
+        </p>
+      </div>
+
+      <footer class="site">
+        <div>© 2026 KovaFit</div>
+        <div class="links">
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        // Standard RPE chart: percent of 1RM by reps (1-12) and RPE column.
+        var RPE_COLS = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6];
+        var CHART = {
+          1:  [100, 97.8, 95.5, 93.9, 92.2, 90.7, 89.2, 87.8, 86.3],
+          2:  [95.5, 93.9, 92.2, 90.7, 89.2, 87.8, 86.3, 85.0, 83.7],
+          3:  [92.2, 90.7, 89.2, 87.8, 86.3, 85.0, 83.7, 82.4, 81.1],
+          4:  [89.2, 87.8, 86.3, 85.0, 83.7, 82.4, 81.1, 79.9, 78.6],
+          5:  [86.3, 85.0, 83.7, 82.4, 81.1, 79.9, 78.6, 77.4, 76.2],
+          6:  [83.7, 82.4, 81.1, 79.9, 78.6, 77.4, 76.2, 75.1, 73.9],
+          7:  [81.1, 79.9, 78.6, 77.4, 76.2, 75.1, 73.9, 72.3, 70.7],
+          8:  [78.6, 77.4, 76.2, 75.1, 73.9, 72.3, 70.7, 69.4, 68.0],
+          9:  [76.2, 75.1, 73.9, 72.3, 70.7, 69.4, 68.0, 66.7, 65.3],
+          10: [73.9, 72.3, 70.7, 69.4, 68.0, 66.7, 65.3, 64.0, 62.6],
+          11: [70.7, 69.4, 68.0, 66.7, 65.3, 64.0, 62.6, 61.3, 60.0],
+          12: [68.0, 66.7, 65.3, 64.0, 62.6, 61.3, 60.0, 58.7, 57.4]
+        };
+
+        var weightEl = document.getElementById("weight");
+        var repsEl = document.getElementById("reps");
+        var rpeEl = document.getElementById("rpe");
+        var rmValue = document.getElementById("rm-value");
+        var rmSub = document.getElementById("rm-sub");
+        var tbody = document.querySelector("#rpe-table tbody");
+        var lbBtn = document.getElementById("unit-lb");
+        var kgBtn = document.getElementById("unit-kg");
+        var unit = "lb";
+
+        function round(n, step) { return Math.round(n / step) * step; }
+        function fmt(n) { return (Math.round(n * 10) / 10).toString().replace(/\.0$/, ""); }
+
+        function update() {
+          var w = parseFloat(weightEl.value);
+          var r = parseInt(repsEl.value, 10);
+          var rpe = parseFloat(rpeEl.value);
+          if (r > 12) { r = 12; repsEl.value = 12; }
+
+          if (!(w > 0) || !(r >= 1) || !CHART[r]) {
+            rmValue.textContent = "—";
+            rmSub.textContent = "Enter weight, reps (1–12) and RPE.";
+            tbody.innerHTML = "";
+            return;
+          }
+
+          var colIndex = RPE_COLS.indexOf(rpe);
+          var pct = CHART[r][colIndex] / 100;
+          var oneRM = w / pct;
+          rmValue.textContent = fmt(round(oneRM, 0.5)) + " " + unit;
+          rmSub.textContent =
+            fmt(w) + " " + unit + " × " + r + " @ RPE " + rpe +
+            " (" + (10 - rpe) + " RIR)";
+
+          var rows = "";
+          for (var i = 0; i < RPE_COLS.length; i++) {
+            var col = RPE_COLS[i];
+            var wt = round(oneRM * (CHART[r][i] / 100), 0.5);
+            var cls = col === rpe ? ' class="is-highlight"' : "";
+            rows +=
+              "<tr" + cls + "><td>" + col + "</td><td>" + (10 - col) +
+              "</td><td>" + fmt(wt) + " " + unit + "</td></tr>";
+          }
+          tbody.innerHTML = rows;
+        }
+
+        function setUnit(u) {
+          if (u === unit) return;
+          var w = parseFloat(weightEl.value);
+          if (w > 0) {
+            weightEl.value = u === "kg" ? round(w * 0.453592, 0.5) : round(w / 0.453592, 0.5);
+          }
+          unit = u;
+          lbBtn.setAttribute("aria-pressed", String(u === "lb"));
+          kgBtn.setAttribute("aria-pressed", String(u === "kg"));
+          update();
+        }
+
+        weightEl.addEventListener("input", update);
+        repsEl.addEventListener("input", update);
+        rpeEl.addEventListener("change", update);
+        lbBtn.addEventListener("click", function () { setUnit("lb"); });
+        kgBtn.addEventListener("click", function () { setUnit("kg"); });
+        update();
+      })();
+    </script>
+  </body>
+</html>

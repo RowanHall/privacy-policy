@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Strength Standards Calculator — DOTS &amp; Wilks Score | KovaFit</title>
+    <meta name="description" content="Am I strong for my bodyweight? Free strength standards calculator. Enter your bodyweight and total to get your DOTS and Wilks score and see your strength level." />
+    <link rel="canonical" href="https://kovafit.ca/tools/strength-standards-calculator/" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+    <meta property="og:site_name" content="KovaFit" />
+    <meta property="og:title" content="Strength Standards Calculator — DOTS &amp; Wilks Score" />
+    <meta property="og:description" content="Enter your bodyweight and total to get your DOTS and Wilks score and see how strong you are for your size." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kovafit.ca/tools/strength-standards-calculator/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovafit.ca/" },
+              { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://kovafit.ca/tools/" },
+              { "@type": "ListItem", "position": 3, "name": "Strength Standards Calculator", "item": "https://kovafit.ca/tools/strength-standards-calculator/" }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a DOTS score?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "DOTS is a coefficient that scores a lifter's total relative to their bodyweight, so lifters of different sizes can be compared fairly. It's the modern successor to the Wilks formula and is used by many powerlifting federations to rank athletes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good Wilks or DOTS score?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For a full powerlifting total (squat, bench and deadlift), a rough guide is: under 200 is a beginner, 200–300 novice, 300–400 intermediate, 400–500 advanced, and 500 or more is elite. These bands are approximate and vary by federation and testing."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is DOTS different from Wilks?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Both convert your total into a bodyweight-adjusted score, but DOTS uses an updated polynomial and a single formula shape for each sex. DOTS has largely replaced the original Wilks formula in modern competition."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/kova-logo.png" alt="KovaFit" height="26" />
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
+        </div>
+      </nav>
+
+      <header class="doc-header">
+        <h1>Strength Standards Calculator</h1>
+      </header>
+      <p class="lead">
+        Am I strong for my bodyweight? Enter your bodyweight and your total (or a
+        single lift) to get your <strong>DOTS</strong> and <strong>Wilks</strong>
+        score — the bodyweight-adjusted numbers powerlifters use to compare
+        across weight classes.
+      </p>
+
+      <div class="tool">
+        <div class="tool-form">
+          <div class="field">
+            <label for="sex">Sex</label>
+            <select id="sex">
+              <option value="male" selected>Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bw">Bodyweight</label>
+            <input id="bw" type="number" inputmode="decimal" min="0" step="0.5" value="185" />
+          </div>
+          <div class="field">
+            <label for="total">Total lifted</label>
+            <input id="total" type="number" inputmode="decimal" min="0" step="0.5" value="1000" />
+          </div>
+          <div class="field">
+            <label>Units</label>
+            <div class="seg" role="group" aria-label="Units">
+              <button type="button" id="unit-lb" aria-pressed="true">lb</button>
+              <button type="button" id="unit-kg" aria-pressed="false">kg</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="result-label">DOTS score</span>
+          <span class="result-value" id="dots-value">—</span>
+          <span class="result-sub" id="level-sub"></span>
+        </div>
+      </div>
+
+      <table class="data-table" aria-label="Scores">
+        <tbody>
+          <tr><td>DOTS score</td><td id="dots-cell">—</td></tr>
+          <tr><td>Wilks score</td><td id="wilks-cell">—</td></tr>
+          <tr><td>Total ÷ bodyweight</td><td id="ratio-cell">—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tool-cta">
+        <p><strong>Watch your score climb.</strong> KovaFit tracks your top lifts and lifetime totals so you can see progress session over session — free on iPhone.</p>
+        <a class="btn" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get KovaFit</a>
+      </div>
+
+      <h2>How to read your score</h2>
+      <p>
+        DOTS and Wilks both scale your total by your bodyweight, so a 60&nbsp;kg
+        and a 100&nbsp;kg lifter can be compared on a level field. For a full
+        squat + bench + deadlift total, a rough guide:
+      </p>
+      <table class="data-table">
+        <thead><tr><th>DOTS</th><th>Level</th></tr></thead>
+        <tbody>
+          <tr><td>Under 200</td><td>Beginner</td></tr>
+          <tr><td>200–300</td><td>Novice</td></tr>
+          <tr><td>300–400</td><td>Intermediate</td></tr>
+          <tr><td>400–500</td><td>Advanced</td></tr>
+          <tr><td>500+</td><td>Elite</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <p>
+          These bands assume a full powerlifting total. If you enter a single
+          lift the score will be much lower — that's expected. Standards vary by
+          federation; treat this as a guide, not an official ranking.
+        </p>
+      </div>
+
+      <footer class="site">
+        <div>© 2026 KovaFit</div>
+        <div class="links">
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var COEF = {
+          dots: {
+            male:   [-307.75076, 24.0900756, -0.1918759221, 0.0007391293, -0.000001093],
+            female: [-57.96288, 13.6175032, -0.1126655495, 0.0005158568, -0.0000010706]
+          },
+          wilks: {
+            male:   [-216.0475144, 16.2606339, -0.002388645, -0.00113732, 0.00000701863, -0.00000001291],
+            female: [594.31747775582, -27.23842536447, 0.82112226871, -0.00930733913, 0.00004731582, -0.00000009054]
+          }
+        };
+
+        var sexEl = document.getElementById("sex");
+        var bwEl = document.getElementById("bw");
+        var totalEl = document.getElementById("total");
+        var dotsValue = document.getElementById("dots-value");
+        var levelSub = document.getElementById("level-sub");
+        var dotsCell = document.getElementById("dots-cell");
+        var wilksCell = document.getElementById("wilks-cell");
+        var ratioCell = document.getElementById("ratio-cell");
+        var lbBtn = document.getElementById("unit-lb");
+        var kgBtn = document.getElementById("unit-kg");
+        var unit = "lb";
+        var LB_TO_KG = 0.453592;
+
+        function poly(c, x) {
+          var sum = 0;
+          for (var i = 0; i < c.length; i++) sum += c[i] * Math.pow(x, i);
+          return sum;
+        }
+        function fmt(n) { return (Math.round(n * 10) / 10).toString(); }
+
+        function level(d) {
+          if (d < 200) return "Beginner";
+          if (d < 300) return "Novice";
+          if (d < 400) return "Intermediate";
+          if (d < 500) return "Advanced";
+          return "Elite";
+        }
+
+        function update() {
+          var bw = parseFloat(bwEl.value);
+          var total = parseFloat(totalEl.value);
+          var sex = sexEl.value;
+
+          if (!(bw > 0) || !(total > 0)) {
+            dotsValue.textContent = "—";
+            levelSub.textContent = "Enter your bodyweight and total.";
+            dotsCell.textContent = wilksCell.textContent = ratioCell.textContent = "—";
+            return;
+          }
+
+          var bwKg = unit === "kg" ? bw : bw * LB_TO_KG;
+          var totalKg = unit === "kg" ? total : total * LB_TO_KG;
+
+          var dots = totalKg * 500 / poly(COEF.dots[sex], bwKg);
+          var wilks = totalKg * 500 / poly(COEF.wilks[sex], bwKg);
+
+          dotsValue.textContent = fmt(dots);
+          levelSub.textContent = level(dots) + " · at " + fmt(bw) + " " + unit + " bodyweight";
+          dotsCell.textContent = fmt(dots);
+          wilksCell.textContent = fmt(wilks);
+          ratioCell.textContent = (Math.round((total / bw) * 100) / 100) + "×";
+        }
+
+        function setUnit(u) {
+          if (u === unit) return;
+          var bw = parseFloat(bwEl.value);
+          var total = parseFloat(totalEl.value);
+          function conv(v) {
+            if (!(v > 0)) return v;
+            return u === "kg"
+              ? Math.round(v * LB_TO_KG * 2) / 2
+              : Math.round((v / LB_TO_KG) * 2) / 2;
+          }
+          bwEl.value = conv(bw);
+          totalEl.value = conv(total);
+          unit = u;
+          lbBtn.setAttribute("aria-pressed", String(u === "lb"));
+          kgBtn.setAttribute("aria-pressed", String(u === "kg"));
+          update();
+        }
+
+        sexEl.addEventListener("change", update);
+        bwEl.addEventListener("input", update);
+        totalEl.addEventListener("input", update);
+        lbBtn.addEventListener("click", function () { setUnit("lb"); });
+        kgBtn.addEventListener("click", function () { setUnit("kg"); });
+        update();
+      })();
+    </script>
+  </body>
+</html>

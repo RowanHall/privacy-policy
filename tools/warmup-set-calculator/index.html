@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Warm-Up Set Calculator — Barbell Warm-Up Sets | KovaFit</title>
+    <meta name="description" content="Free warm-up set calculator. Enter your working weight and get a plate-friendly barbell warm-up ramp — weights and reps for every warm-up set, in lb or kg." />
+    <link rel="canonical" href="https://kovafit.ca/tools/warmup-set-calculator/" />
+    <meta name="theme-color" content="#0b0b0f" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/app-icon.png" />
+    <meta property="og:site_name" content="KovaFit" />
+    <meta property="og:title" content="Warm-Up Set Calculator" />
+    <meta property="og:description" content="Enter your working weight and get a plate-friendly barbell warm-up ramp — weights and reps for every set." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kovafit.ca/tools/warmup-set-calculator/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kovafit.ca/" },
+              { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://kovafit.ca/tools/" },
+              { "@type": "ListItem", "position": 3, "name": "Warm-Up Set Calculator", "item": "https://kovafit.ca/tools/warmup-set-calculator/" }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many warm-up sets should I do?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most barbell lifts, three to five warm-up sets is plenty — starting with the empty bar and ramping up to your working weight, doing fewer reps as the weight climbs. Heavier top sets and colder conditions warrant a few more."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much weight should each warm-up set add?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A common approach is to ramp by percentage of your working weight — roughly the empty bar, then about 40%, 60%, 75% and 90% — reducing reps as you go so you're primed but not fatigued for your working sets."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/kova-logo.png" alt="KovaFit" height="26" />
+        </a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a class="nav-cta" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get the app</a>
+        </div>
+      </nav>
+
+      <header class="doc-header">
+        <h1>Warm-Up Set Calculator</h1>
+      </header>
+      <p class="lead">
+        Enter your working weight and get a plate-friendly warm-up ramp — the
+        right weights and reps to prime the movement without burning out before
+        your working sets.
+      </p>
+
+      <div class="tool">
+        <div class="tool-form">
+          <div class="field">
+            <label for="working">Working weight</label>
+            <input id="working" type="number" inputmode="decimal" min="0" step="0.5" value="225" />
+          </div>
+          <div class="field">
+            <label for="bar">Bar weight</label>
+            <input id="bar" type="number" inputmode="decimal" min="0" step="0.5" value="45" />
+          </div>
+          <div class="field">
+            <label>Units</label>
+            <div class="seg" role="group" aria-label="Units">
+              <button type="button" id="unit-lb" aria-pressed="true">lb</button>
+              <button type="button" id="unit-kg" aria-pressed="false">kg</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span class="result-label">Warm-up sets</span>
+          <span class="result-value" id="count-value">—</span>
+          <span class="result-sub">before your working weight</span>
+        </div>
+      </div>
+
+      <table class="data-table" id="warmup-table" aria-label="Warm-up sets">
+        <thead>
+          <tr><th>Set</th><th>% of working</th><th>Weight × reps</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="tool-cta">
+        <p><strong>Skip the mental math mid-session.</strong> KovaFit's two-tap logging and rest timer keep you moving through warm-ups and working sets alike — free on iPhone.</p>
+        <a class="btn" href="https://apps.apple.com/ca/app/kova-workout-tracker-gym-log/id6780379828">Get KovaFit</a>
+      </div>
+
+      <h2>How the ramp works</h2>
+      <p>
+        Warm-ups climb by percentage of your working weight while reps drop, so
+        you rehearse the movement and prepare your nervous system without adding
+        fatigue. This calculator uses the empty bar, then roughly 40%, 60%, 75%
+        and 90%, rounding each set to plate-friendly weights.
+      </p>
+      <div class="callout">
+        <p>
+          Adjust to taste — heavier or more technical lifts justify more sets,
+          and light accessory work needs fewer. Pair with the
+          <a href="/tools/plate-calculator/">plate calculator</a> to load each
+          set fast.
+        </p>
+      </div>
+
+      <footer class="site">
+        <div>© 2026 KovaFit</div>
+        <div class="links">
+          <a href="/tools/">Tools</a>
+          <a href="/blog/">Blog</a>
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var workingEl = document.getElementById("working");
+        var barEl = document.getElementById("bar");
+        var countValue = document.getElementById("count-value");
+        var tbody = document.querySelector("#warmup-table tbody");
+        var lbBtn = document.getElementById("unit-lb");
+        var kgBtn = document.getElementById("unit-kg");
+        var unit = "lb";
+
+        // {pct: fraction of working weight (null = empty bar), reps}
+        var SCHEME = [
+          { pct: null, reps: 10 },
+          { pct: 0.40, reps: 5 },
+          { pct: 0.60, reps: 3 },
+          { pct: 0.75, reps: 2 },
+          { pct: 0.90, reps: 1 }
+        ];
+
+        function step() { return unit === "kg" ? 2.5 : 5; }
+        function roundTo(n, s) { return Math.round(n / s) * s; }
+        function fmt(n) { return (Math.round(n * 10) / 10).toString().replace(/\.0$/, ""); }
+
+        function update() {
+          var working = parseFloat(workingEl.value);
+          var bar = parseFloat(barEl.value);
+          if (isNaN(bar) || bar < 0) bar = 0;
+
+          if (!(working > 0)) {
+            countValue.textContent = "—";
+            tbody.innerHTML = "";
+            return;
+          }
+
+          var s = step();
+          var rows = "";
+          var last = -1;
+          var count = 0;
+          for (var i = 0; i < SCHEME.length; i++) {
+            var item = SCHEME[i];
+            var wt;
+            if (item.pct === null) {
+              wt = bar > 0 ? bar : roundTo(working * 0.2, s);
+            } else {
+              wt = roundTo(working * item.pct, s);
+              if (wt < bar) wt = bar; // never below the empty bar
+            }
+            // skip if not heavier than the previous set or at/above working weight
+            if (wt <= last || wt >= working) continue;
+            last = wt;
+            count++;
+            var pctLabel = item.pct === null
+              ? "bar"
+              : Math.round((wt / working) * 100) + "%";
+            rows +=
+              "<tr><td>" + count + "</td><td>" + pctLabel + "</td><td>" +
+              fmt(wt) + " " + unit + " × " + item.reps + "</td></tr>";
+          }
+          // working set
+          rows +=
+            '<tr class="is-highlight"><td>' + (count + 1) +
+            "</td><td>100%</td><td>" + fmt(working) + " " + unit +
+            " × working</td></tr>";
+
+          tbody.innerHTML = rows;
+          countValue.textContent = count;
+        }
+
+        function setUnit(u) {
+          if (u === unit) return;
+          var w = parseFloat(workingEl.value);
+          var b = parseFloat(barEl.value);
+          function conv(v) {
+            if (!(v > 0)) return v;
+            return u === "kg"
+              ? Math.round(v * 0.453592 * 2) / 2
+              : Math.round((v / 0.453592) * 2) / 2;
+          }
+          workingEl.value = conv(w);
+          barEl.value = u === "kg" ? 20 : 45;
+          unit = u;
+          lbBtn.setAttribute("aria-pressed", String(u === "lb"));
+          kgBtn.setAttribute("aria-pressed", String(u === "kg"));
+          update();
+        }
+
+        workingEl.addEventListener("input", update);
+        barEl.addEventListener("input", update);
+        lbBtn.addEventListener("click", function () { setUnit("lb"); });
+        kgBtn.addEventListener("click", function () { setUnit("kg"); });
+        update();
+      })();
+    </script>
+  </body>
+</html>

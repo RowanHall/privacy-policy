@@ -423,6 +423,19 @@ li { margin-bottom: 8px; }
   object-fit: cover;
 }
 
+/* Pre-framed device renders (frame baked into the PNG) */
+.device {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.device-shot {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+}
+
 /* Secondary feature grid */
 .feature-grid-wrap {
   padding: 84px 0;

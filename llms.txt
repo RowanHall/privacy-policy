@@ -27,8 +27,13 @@
 - Lifting tools hub: https://kovafit.ca/tools/
 - One-Rep Max (1RM) Calculator — estimate your 1RM from any set, with a rep-max chart: https://kovafit.ca/tools/one-rep-max-calculator/
 - Barbell Plate Calculator — which plates to load per side: https://kovafit.ca/tools/plate-calculator/
+- RPE Calculator — convert weight/reps/RPE to an estimated 1RM, with reps-in-reserve: https://kovafit.ca/tools/rpe-calculator/
+- Strength Standards Calculator — DOTS and Wilks score from bodyweight and total: https://kovafit.ca/tools/strength-standards-calculator/
+- Warm-Up Set Calculator — plate-friendly barbell warm-up ramp: https://kovafit.ca/tools/warmup-set-calculator/
 - Blog: https://kovafit.ca/blog/
 - Guide: How to calculate your one-rep max: https://kovafit.ca/blog/how-to-calculate-one-rep-max/
+- Guide: Best free workout tracker apps for lifters: https://kovafit.ca/blog/best-free-workout-tracker-apps/
+- Comparison: Workout tracker app vs spreadsheet: https://kovafit.ca/blog/workout-tracker-vs-spreadsheet/
 
 ## Contact
 - Email: hello@kovafit.ca
